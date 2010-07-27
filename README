@@ -1,0 +1,188 @@
+# Warlogs on MongoDB
+
+## Import
+
+	mongoimport -d warlogs dump
+
+## Test
+
+	mongo warlogs
+	db.event.findOne()
+	db.attr.find()
+	# geo selects over the geo key
+	db.event.findOne( { 'geo': { '$near': [ 32,69 ] } } )
+	db.event.findOne( { 'geo': { '$near': {'lat': 32, 'long': 69} } } )
+	
+for geo quering look at [here](http://www.mongodb.org/display/DOCS/Geospatial+Indexing "Geospatial indexing")
+
+### Example Data Set from event collection
+
+	{
+	    "_id" : "AFG20040101n1",
+	    "category" : "Direct Fire",
+	    "meta_raw" : "Report key: D92871CA-D217-4124-B8FB-89B9A2CFFCB4<br />Tracking number: 2007-033-004042-0756<br />Attack on: ENEMY<br />Complex atack: FALSE<br />Reporting unit: OTHER<br />Unit name: OTHER<br />Type of unit: Coalition<br />Originator group: UNKNOWN<br />Updated by group: UNKNOWN<br />MGRS: 42SWB3900916257<br />CCIR: <br />Sigact: <br />DColor: RED<br />",
+	    "desc_raw" : "<span class=\"abbr\" title=\"Kandahar Airfield\">KAF</span>-1<span class=\"abbr\" title=\"Brigade\">BDE</span> -S3 REPORTS: SUMMIT 09 B <span class=\"abbr\" title=\"Company / Commanding Officer\">CO</span> ELEMENT SALUTE REPORT AS FOLLOWS: S- 3-4 <span class=\"abbr\" title=\"Person\">PAX</span>, A- SMALL ARMS FIRE, L-<span class=\"abbr\" title=\"In the Vicinity Of\">IVO</span> 42 <span class=\"abbr\" title=\"reference to grid coordinates\">SWB</span> 3910 1617, U-<span class=\"abbr\" title=\"Unknown\">UNK</span>, T-0415Z, E-<span class=\"abbr\" title=\"AK47, ubiquitous russian design machine pistol Avtomat Kalashnikov\">AK</span>-47. 0448Z ENEMY ELEMENTS BROKEN CONTACT. 0442Z AIR <span class=\"abbr\" title=\"Quick Reaction Force\">QRF</span> PREPOSITIONED TO ORGUN-E. 0550Z UPDATE SUMMIT 09 B <span class=\"abbr\" title=\"Company / Commanding Officer\">CO</span> ELEMENT HAS REGAINED CONTACT. SALUTE REPORT AS FOLLOWS: S-3-4 <span class=\"abbr\" title=\"Person\">PAX</span>, A-SMALL ARMS FIRE, L-<span class=\"abbr\" title=\"In the Vicinity Of\">IVO</span> 42 <span class=\"abbr\" title=\"reference to grid coordinates\">SWB</span> 3902 1627, U-<span class=\"abbr\" title=\"Unknown\">UNK</span>, T-0540Z, E-<span class=\"abbr\" title=\"AK47, ubiquitous russian design machine pistol Avtomat Kalashnikov\">AK</span>-47. 0620Z UNIT IS NO LONGER IN CONTACT. REPORTING INDICATES POSSIBLY 3X SUSPECTED <span class=\"abbr\" title=\"Anti-Coalition Militia\">ACM</span>&amp;apos;&amp;apos;S WERE <span class=\"abbr\" title=\"Killed in Action\">KIA</span>.",
+	    "title" : "DIRECT FIRE  Other",
+	    "affiliation" : "ENEMY",
+	    "region" : "RC EAST",
+	    "action" : "Enemy Action",
+	    "meta" : {
+	        "unit_name" : {
+	            "value" : "OTHER",
+	            "label" : "Unit name"
+	        },
+	        "complex_atack" : {
+	            "value" : "FALSE",
+	            "label" : "Complex atack"
+	        },
+	        "reporting_unit" : {
+	            "value" : "OTHER",
+	            "label" : "Reporting unit"
+	        },
+	        "type_of_unit" : {
+	            "value" : "Coalition",
+	            "label" : "Type of unit"
+	        },
+	        "report_key" : {
+	            "value" : "D92871CA-D217-4124-B8FB-89B9A2CFFCB4",
+	            "label" : "Report key"
+	        },
+	        "dcolor" : {
+	            "value" : "RED",
+	            "label" : "DColor"
+	        },
+	        "mgrs" : {
+	            "value" : "42SWB3900916257",
+	            "label" : "MGRS"
+	        },
+	        "ccir" : {
+	            "value" : "",
+	            "label" : "CCIR"
+	        },
+	        "tracking_number" : {
+	            "value" : "2007-033-004042-0756",
+	            "label" : "Tracking number"
+	        },
+	        "updated_by_group" : {
+	            "value" : "UNKNOWN",
+	            "label" : "Updated by group"
+	        },
+	        "attack_on" : {
+	            "value" : "ENEMY",
+	            "label" : "Attack on"
+	        },
+	        "originator_group" : {
+	            "value" : "UNKNOWN",
+	            "label" : "Originator group"
+	        },
+	        "sigact" : {
+	            "value" : "",
+	            "label" : "Sigact"
+	        }
+	    },
+	    "abbr" : [
+	        {
+	            "_id" : "kandahar_airfield",
+	            "value" : "KAF",
+	            "label" : "Kandahar Airfield"
+	        },
+	        {
+	            "_id" : "brigade",
+	            "value" : "BDE",
+	            "label" : "Brigade"
+	        },
+	        {
+	            "_id" : "company_commanding_officer",
+	            "value" : "CO",
+	            "label" : "Company / Commanding Officer"
+	        },
+	        {
+	            "_id" : "person",
+	            "value" : "PAX",
+	            "label" : "Person"
+	        },
+	        {
+	            "_id" : "in_the_vicinity_of",
+	            "value" : "IVO",
+	            "label" : "In the Vicinity Of"
+	        },
+	        {
+	            "_id" : "reference_to_grid_coordinates",
+	            "value" : "SWB",
+	            "label" : "reference to grid coordinates"
+	        },
+	        {
+	            "_id" : "unknown",
+	            "value" : "UNK",
+	            "label" : "Unknown"
+	        },
+	        {
+	            "_id" : "ak47_ubiquitous_russian_design_machine_pistol_avtomat_kalashnikov",
+	            "value" : "AK",
+	            "label" : "AK47, ubiquitous russian design machine pistol Avtomat Kalashnikov"
+	        },
+	        {
+	                "_id" : "quick_reaction_force",
+	            "value" : "QRF",
+	            "label" : "Quick Reaction Force"
+	        },
+	        {
+	            "_id" : "company_commanding_officer",
+	            "value" : "CO",
+	            "label" : "Company / Commanding Officer"
+	        },
+	        {
+	            "_id" : "person",
+	            "value" : "PAX",
+	            "label" : "Person"
+	        },
+	        {
+	            "_id" : "in_the_vicinity_of",
+	            "value" : "IVO",
+	            "label" : "In the Vicinity Of"
+	        },
+	        {
+	            "_id" : "reference_to_grid_coordinates",
+	            "value" : "SWB",
+	            "label" : "reference to grid coordinates"
+	        },
+	        {
+	            "_id" : "unknown",
+	            "value" : "UNK",
+	            "label" : "Unknown"
+	        },
+	        {
+	            "_id" : "ak47_ubiquitous_russian_design_machine_pistol_avtomat_kalashnikov",
+	            "value" : "AK",
+	            "label" : "AK47, ubiquitous russian design machine pistol Avtomat Kalashnikov"
+	        },
+	        {
+	            "_id" : "anti_coalition_militia",
+	            "value" : "ACM",
+	            "label" : "Anti-Coalition Militia"
+	        },
+	        {
+	            "_id" : "killed_in_action",
+	            "value" : "KIA",
+	            "label" : "Killed in Action"
+	        }
+	    ],
+	    "detained" : 0,
+	    "date" : "Thu Jan 01 2004 01:12:00 GMT+0100 (CET)",
+	    "wounded" : {
+	        "enemy" : 0,
+	        "host_nation" : 0,
+	        "friend" : 0,
+	        "civilian" : 0
+	    },
+	    "geo" : {
+	        "lat" : 32.68331909,
+	        "long" : 69.41610718
+	    },
+	    "killed" : {
+	        "enemy" : 3,
+	        "host_nation" : 0,
+	        "friend" : 0,
+	        "civilian" : 0
+	    }
+	}
