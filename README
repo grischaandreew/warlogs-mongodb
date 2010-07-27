@@ -13,7 +13,7 @@
 	db.event.findOne( { 'geo': { '$near': [ 32,69 ] } } )
 	db.event.findOne( { 'geo': { '$near': {'lat': 32, 'long': 69} } } )
 	
-for geo quering look at [here](http://www.mongodb.org/display/DOCS/Geospatial+Indexing "Geospatial indexing")
+for geo quering look at http://www.mongodb.org/display/DOCS/Geospatial+Indexing
 
 ## Example Data Set from event collection
 
