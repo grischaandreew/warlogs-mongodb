@@ -1,10 +1,10 @@
-# Warlogs on MongoDB
+Warlogs on MongoDB
 
-## Import
+Import
 
 	mongoimport -d warlogs dump
 
-## Test
+Test
 
 	mongo warlogs
 	db.event.findOne()
@@ -13,9 +13,9 @@
 	db.event.findOne( { 'geo': { '$near': [ 32,69 ] } } )
 	db.event.findOne( { 'geo': { '$near': {'lat': 32, 'long': 69} } } )
 	
-for geo quering look at [here](http://www.mongodb.org/display/DOCS/Geospatial+Indexing "Geospatial indexing")
+for geo quering look at http://www.mongodb.org/display/DOCS/Geospatial+Indexing
 
-### Example Data Set from event collection
+Example Data Set from event collection
 
 	{
 	    "_id" : "AFG20040101n1",
